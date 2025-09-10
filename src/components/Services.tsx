@@ -1,6 +1,7 @@
 import { Scissors, Sprout, Bug, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 const Services = () => {
   const services = [
@@ -19,8 +20,8 @@ const Services = () => {
         "Plant bed nutrition",
         "Soil analysis",
         "Growth optimization",
-        "Irrigation & Fertigation 2003 & 2006",
-        "National Fertilizer Advisor Course, BASOS 2004"
+        { text: "Irrigation & Fertigation Certificate, 2003 & 2006", bold: true },
+        { text: "National Fertilizer Advisor Certificate BASOS, 2004", bold: true }
       ],
       optional: true
     },
@@ -33,7 +34,7 @@ const Services = () => {
         "Fungal treatment",
         "Insect management",
         "Preventive care",
-        "Crop Protection Certification 2018"
+        { text: "Crop Protection Certificate, 2018", bold: true }
       ],
       optional: true
     }
@@ -78,12 +79,17 @@ const Services = () => {
                   </p>
                   
                   <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span className="text-card-foreground">{feature}</span>
-                      </li>
-                    ))}
+                      {service.features.map((feature, idx) => {
+                        const isObject = typeof feature === "object";
+                        const text = isObject ? feature.text : feature;
+                        const bold = isObject && feature.bold;
+                        return (
+                          <li key={idx} className="flex items-center gap-2 text-sm">
+                            <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                            <span className={cn("text-card-foreground", bold && "font-bold")}>{text}</span>
+                          </li>
+                        );
+                      })}
                   </ul>
                 </CardContent>
               </Card>
