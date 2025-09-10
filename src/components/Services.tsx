@@ -102,7 +102,7 @@ const Services = () => {
                 Service Level Agreement Required
               </h3>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                All garden services require a signed Service Level Agreement with agreed payment terms 
+                We require a signed Service Level Agreement with agreed payment terms
                 to ensure clear expectations and professional service delivery.
               </p>
             </div>
